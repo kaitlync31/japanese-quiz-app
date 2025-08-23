@@ -2,19 +2,19 @@
 
 A web app that generates Japanese reading comprehension quizzes using FastAPI (backend) and React (frontend). Powered by OpenAI.
 
-## 🚀 Features
+## Features
 - Input any Japanese text
 - Auto-generate multiple-choice quiz questions
 - Submit answers and receive instant scoring
 - Clean UI with React
 - AI-powered quiz generation via OpenAI API
 
-## 🛠 Tech Stack
+## Tech Stack
 - **Frontend**: React, React Router
 - **Backend**: FastAPI, OpenAI API
 - **Language**: Python, JavaScript
 
-## 📦 Installation
+## Installation
 
 ### Clone the Repository
 ```bash
@@ -40,7 +40,7 @@ npm install
 npm start
 ```
 
-## 📸 Screenshots
+## Screenshots
 ### Home Page
 ![Home Page](screenshots/home.png)
 ### Quiz Page
@@ -48,7 +48,7 @@ npm start
 ### Score Page
 ![Score Page](screenshots/score.png)
 
-## 🎯 Future Improvements
+## Future Improvements
 - Add support for difficulty levels (easy, medium, hard)
 - Save user progress / scores
 - Deploy online (Vercel + Render/Heroku)
