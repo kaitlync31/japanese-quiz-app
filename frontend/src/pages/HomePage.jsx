@@ -6,6 +6,10 @@ function HomePage() {
     const navigate = useNavigate();
 
     const handleGenerateQuiz = () => {
+        if (!text.trim()) {
+            alert("Please enter some Japanese text first.");
+            return;
+        }
         navigate('/quiz', { state: { text } });
     };
     return (
