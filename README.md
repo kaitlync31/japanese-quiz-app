@@ -52,6 +52,3 @@ npm start
 - Add support for difficulty levels (easy, medium, hard)
 - Save user progress / scores
 - Deploy online (Vercel + Render/Heroku)
-
-## 👩‍💻 Author
-Created by Kaitlyn Chen 
