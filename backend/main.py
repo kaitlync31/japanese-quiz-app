@@ -13,7 +13,7 @@ app = FastAPI()
 # Setup CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins; for production, list your frontend URL(s)
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,12 +32,13 @@ class QuestionItem(BaseModel):
 class AnswerRequest(BaseModel):
     questions: list[QuestionItem]
 
-# Initialize OpenAI client with your API key
+# Initialize OpenAI client
 load_dotenv()  
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY)
 
-@app.post("/generate-questions") # Endpoint to generate questions
+# Endpoint to generate questions
+@app.post("/generate-questions") 
 async def generate_questions(request: TextRequest):
     try: 
         response = client.chat.completions.create(
@@ -69,8 +70,8 @@ async def generate_questions(request: TextRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
-@app.post("/check-answers")  # Endpoint to check answers
+# Endpoint to check answers
+@app.post("/check-answers")  
 async def check_answers(request: AnswerRequest):
     results = []
     correct_answers = 0
