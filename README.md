@@ -10,7 +10,7 @@ A web app that generates Japanese reading comprehension quizzes using FastAPI (b
 - AI-powered quiz generation via OpenAI API
 
 ## Tech Stack
-- **Frontend**: React, React Router
+- **Frontend**: React, Node.js
 - **Backend**: FastAPI, OpenAI API
 - **Language**: Python, JavaScript
 
