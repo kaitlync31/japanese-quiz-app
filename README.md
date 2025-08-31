@@ -50,6 +50,6 @@ npm start
 ![Score Page](screenshots/score.png)
 
 ## Future Improvements
-- Display user scores & progress
+- Display user's past scores & progress
 - Add support for difficulty levels (easy, medium, hard)
 - Allow user to adjust number of quiz questions
