@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import openai
@@ -6,9 +6,19 @@ from openai import OpenAI
 import os
 import json
 from dotenv import load_dotenv
+from sqlalchemy.orm import Session
+from database import Base, engine, SessionLocal, Score
 
 # Create FASTAPI app
 app = FastAPI()
+
+# Get DB session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 # Setup CORS
 app.add_middleware(
@@ -73,7 +83,7 @@ async def generate_questions(request: TextRequest):
 
 # Endpoint to check answers
 @app.post("/check-answers")  
-async def check_answers(request: AnswerRequest):
+async def check_answers(request: AnswerRequest, db: Session = Depends(get_db)):
     results = []
     correct_answers = 0
     for q in request.questions:
@@ -85,8 +95,24 @@ async def check_answers(request: AnswerRequest):
         })
         if q.user_answer == q.correct_answer:
             correct_answers += 1
+
+    # Save score to database
+    score_entry = Score(
+        username="test_user",  # Replace with actual user identification
+        score=correct_answers,
+        total_questions=len(request.questions)
+    )
+    db.add(score_entry)
+    db.commit()
+    db.refresh(score_entry)
+
     return {"results": results,
             "score": correct_answers,
             "total": len(request.questions)
     }
 
+# Endpoint to get all scores
+@app.get("/scores")
+async def get_scores(db: Session = Depends(get_db)):
+    scores = db.query(Score).all()
+    return {"scores": [{"username": s.username, "score": s.score, "total_questions": s.total_questions} for s in scores]}
