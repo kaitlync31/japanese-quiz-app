@@ -12,7 +12,7 @@ A web app that generates Japanese reading comprehension quizzes using FastAPI (b
 ## Tech Stack
 - **Frontend**: React, Node.js
 - **Backend**: FastAPI, OpenAI API
-- **Language**: Python, JavaScript
+- **Language**: JavaScript, Python
 
 ## Installation
 
@@ -50,5 +50,6 @@ npm start
 
 ## Future Improvements
 - Add support for difficulty levels (easy, medium, hard)
-- Save user progress / scores
+- Allow user to adjust number of quiz questions
+- Save & display user progress / scores
 - Deploy online (Vercel + Render/Heroku)
